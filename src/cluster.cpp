@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <queue>
 #include <set>
+#include <iostream>
 
 Csr Cluster::run(Csr &graph_cv) {
     // if (option == "kmeans") return run_kmeans(graph);

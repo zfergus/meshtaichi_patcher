@@ -140,6 +140,7 @@ PYBIND11_MODULE(meshtaichi_patcher_core, m) {
             if (name == "value") return vector2np(local_rel.value);
             if (name == "patch_offset") return vector2np(local_rel.patch_offset);
             if (name == "offset") return vector2np(local_rel.offset);
+            throw std::runtime_error("Invalid name");
         })
         .def("get_mesh_x", [](MeshTaichi::Patcher *patcher){
             //return py::to_pyarray(patcher->mesh->verts);
@@ -152,7 +153,7 @@ PYBIND11_MODULE(meshtaichi_patcher_core, m) {
             return vector2np(ans);
         })
         ;
-    
+
 
     m.def("add_index_test", [](py::array_t<int> x) {
         auto arr = x.mutable_unchecked<1>();
@@ -219,7 +220,7 @@ PYBIND11_MODULE(meshtaichi_patcher_core, m) {
 
         .def("get_mapping", &Patcher::get_mapping)
         ;
-    
+
     m.def("read_tetgen", [](std::string fn) {
         py::list ans;
         if (fn.substr(fn.size() - 4) == "node") ans.append(read_tetgen<float>(fn));
